@@ -10,11 +10,11 @@ export default function AdvancedCounter() {
     const [step, setStep] = useState<number>(1)
 
     function handleIncrement() {
-        setCount(count + 1);
+        setCount(count + step);
     }
 
     function handleDecrement() {
-        setCount(count - 1);
+        setCount(count - step);
     }
 
     function handleReset() {
