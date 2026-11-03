@@ -9,6 +9,7 @@ export default function AdvancedCounter() {
     const savedCount = localStorage.getItem("count");
     return savedCount !== null ? Number(savedCount) : 0;
 });
+
     const [history, setHistory] = useState<number[]>([0]);
 
     const [step, setStep] = useState<number>(1);
@@ -31,6 +32,28 @@ export default function AdvancedCounter() {
     useEffect(( )=> {
         localStorage.setItem("count", count.toString());
     },[count]);
+
+
+    useEffect(() => {
+
+    function handleKeyDown(event: KeyboardEvent) {
+
+        if (event.key === "ArrowUp") {
+            handleIncrement();
+        }
+
+        if (event.key === "ArrowDown") {
+            handleDecrement();
+        }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+    };
+
+}, [count, step]);
 
 
 
