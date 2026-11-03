@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 //Creating the AdvancedCounter function
 export default function AdvancedCounter() {
@@ -6,9 +6,9 @@ export default function AdvancedCounter() {
     // const [count, setCount] = useState<number>(0);
 
     const [count, setCount] = useState<number>(() => {
-    const savedCount = localStorage.getItem("count");
-    return savedCount !== null ? Number(savedCount) : 0;
-});
+        const savedCount = localStorage.getItem("count");
+        return savedCount !== null ? Number(savedCount) : 0;
+    });
 
     const [history, setHistory] = useState<number[]>([0]);
 
@@ -29,31 +29,31 @@ export default function AdvancedCounter() {
         setHistory([0]);
     }
 
-    useEffect(( )=> {
+    useEffect(() => {
         localStorage.setItem("count", count.toString());
-    },[count]);
+    }, [count]);
 
 
     useEffect(() => {
 
-    function handleKeyDown(event: KeyboardEvent) {
+        function handleKeyDown(event: KeyboardEvent) {
 
-        if (event.key === "ArrowUp") {
-            handleIncrement();
+            if (event.key === "ArrowUp") {
+                handleIncrement();
+            }
+
+            if (event.key === "ArrowDown") {
+                handleDecrement();
+            }
         }
 
-        if (event.key === "ArrowDown") {
-            handleDecrement();
-        }
-    }
+        window.addEventListener("keydown", handleKeyDown);
 
-    window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
 
-    return () => {
-        window.removeEventListener("keydown", handleKeyDown);
-    };
-
-}, [count, step]);
+    }, [count, step]);
 
 
 
@@ -61,10 +61,12 @@ export default function AdvancedCounter() {
         <div className="advanced-counter">
             Counter
             <h2> Current Count : {count} </h2>
-            <button className="decrement" onClick={handleDecrement}>Decrement</button>
-            <button className="increment" onClick={handleIncrement}>Increment</button>
+            <div className="button-container">
+                <button className="decrement" onClick={handleDecrement}>Decrement</button>
+                <button className="increment" onClick={handleIncrement}>Increment</button>
 
-            <button className="reset" onClick={handleReset}>Reset</button>
+                <button className="reset" onClick={handleReset}>Reset</button>
+            </div>
             <div>
 
                 <label>Step Value :</label>
