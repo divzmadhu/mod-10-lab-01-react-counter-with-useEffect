@@ -11,10 +11,12 @@ export default function AdvancedCounter() {
 
     function handleIncrement() {
         setCount(count + step);
+        setHistory([...history,count+step]);
     }
 
     function handleDecrement() {
         setCount(count - step);
+        setHistory([...history,count-step]);
     }
 
     function handleReset() {
@@ -41,6 +43,10 @@ export default function AdvancedCounter() {
                     value={step}
                     onChange={(event) => setStep(Number(event.target.value))}
                 />
+            </div>
+
+            <div>
+                Count History : {history.join(", ")}
             </div>
 
         </div>
