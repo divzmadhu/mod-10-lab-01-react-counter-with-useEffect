@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState,useEffect } from "react";
 
 //Creating the AdvancedCounter function
 export default function AdvancedCounter() {
@@ -23,6 +23,11 @@ export default function AdvancedCounter() {
         setCount(0);
         setHistory([0]);
     }
+
+    useEffect(( )=> {
+        localStorage.setItem("count", count.toString());
+    },[count]);
+
 
 
     return (
