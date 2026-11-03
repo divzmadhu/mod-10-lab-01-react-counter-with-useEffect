@@ -3,8 +3,12 @@ import { useState,useEffect } from "react";
 //Creating the AdvancedCounter function
 export default function AdvancedCounter() {
 
-    const [count, setCount] = useState<number>(0);
+    // const [count, setCount] = useState<number>(0);
 
+    const [count, setCount] = useState<number>(() => {
+    const savedCount = localStorage.getItem("count");
+    return savedCount !== null ? Number(savedCount) : 0;
+});
     const [history, setHistory] = useState<number[]>([0]);
 
     const [step, setStep] = useState<number>(1);
