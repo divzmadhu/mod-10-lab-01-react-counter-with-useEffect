@@ -5,3 +5,12 @@
   border-radius: 8px;
 
 }
+
+.count-history {
+    text-align: left;
+}
+
+.history-item {
+    border-bottom: 1px dotted gray;
+    padding: 5px;
+}

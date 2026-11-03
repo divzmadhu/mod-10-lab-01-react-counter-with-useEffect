@@ -5,18 +5,18 @@ export default function AdvancedCounter() {
 
     const [count, setCount] = useState<number>(0);
 
-    const [history, setHistory] = useState<number[]>([]);
+    const [history, setHistory] = useState<number[]>([0]);
 
     const [step, setStep] = useState<number>(1)
 
     function handleIncrement() {
         setCount(count + step);
-        setHistory([...history,count+step]);
+        setHistory([...history, count + step]);
     }
 
     function handleDecrement() {
         setCount(count - step);
-        setHistory([...history,count-step]);
+        setHistory([...history, count - step]);
     }
 
     function handleReset() {
@@ -45,11 +45,18 @@ export default function AdvancedCounter() {
                 />
             </div>
 
-            <div>
-                Count History : {history.join(", ")}
-            </div>
+            <div className= "count-history">
+            <h3>Count History :</h3>
+            <hr />
+            {history.map((item, index) => (
+                <div key={index} className="history-item">
+                    {item}
 
+                </div>
+            ))}
         </div>
+
+        </div >
 
     )
 
