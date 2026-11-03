@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 //Creating the AdvancedCounter function
 export default function AdvancedCounter() {
@@ -7,7 +7,7 @@ export default function AdvancedCounter() {
 
     const [history, setHistory] = useState<number[]>([0]);
 
-    const [step, setStep] = useState<number>(1)
+    const [step, setStep] = useState<number>(1);
 
     function handleIncrement() {
         setCount(count + step);
@@ -20,12 +20,10 @@ export default function AdvancedCounter() {
     }
 
     function handleReset() {
-        setCount(0)
+        setCount(0);
+        setHistory([0]);
     }
 
-    function handleSubmit() {
-        setStep(1)
-    }
 
     return (
         <div className="advanced-counter">
@@ -45,16 +43,16 @@ export default function AdvancedCounter() {
                 />
             </div>
 
-            <div className= "count-history">
-            <h3>Count History :</h3>
-            <hr />
-            {history.map((item, index) => (
-                <div key={index} className="history-item">
-                    {item}
+            <div className="count-history">
+                <h3>Count History :</h3>
+                <hr />
+                {history.map((item, index) => (
+                    <div key={index} className="history-item">
+                        {item}
 
-                </div>
-            ))}
-        </div>
+                    </div>
+                ))}
+            </div>
 
         </div >
 
